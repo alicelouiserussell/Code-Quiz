@@ -32,3 +32,36 @@ var questions = [
     }
 
   ];
+
+
+$(document).ready(function() {
+
+startButton.addEventListener("click", function() {
+    setTimeout(function(){
+        alert("time's up!");
+      }, 75000);
+      
+      var countInterval = setInterval(function() {
+        count--;
+        timeElement.textContent = count;
+      
+        if (count === 0) {
+          clearInterval(countInterval);
+        }
+      }, 1000);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
