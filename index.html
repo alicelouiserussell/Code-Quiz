@@ -17,23 +17,25 @@
         <nav class="navbar navbar-light bg-light">
                 <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Highscores</button>
                 <form class="form-inline">
-                    <a class="navbar-brand">0</a>
+                <div id="time" class="navbar-brand">Time: 0</div>
                 </form>
         </nav>
 </header>
 
 <div>
-        <div class="card border-dark mb-3 mt-5 mx-auto" style="max-width: 60rem;">
+        <div id="content-area" class="card border-dark mb-3 mt-5 mx-auto" style="max-width: 60rem;">
                 <div class="card-body text-dark">
                   <h2 class="card-title font-weight-bold">Coding Quiz Challenge</h2>
                   <p class="card-text">Try to answer the following code-related questions with the time limit.
                       Incorrect answers decrease your time score by 15 seconds.
                   </p>
-                  <button type="button" class="btn btn-outline-info">Start Quiz!</button>
+                  <button id="start-button" type="button" class="btn btn-outline-info">Start Quiz!</button>
                 </div>
         </div>
 
 </div>
+<script src="assets/javascript/script.js" 
+        src="assets/javascript/questions.js"></script>
 
 </body>
 </html>
