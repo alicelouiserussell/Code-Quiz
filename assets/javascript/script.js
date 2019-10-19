@@ -33,21 +33,6 @@ var questions = [
   ];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
 
 startButton.addEventListener("click", function() {
@@ -79,7 +64,6 @@ startButton.addEventListener("click", function() {
     // DEFINE CONTENT //
     ol.setAttribute("id", "list");
     newQuestion.textContent = questions[0].title;
-    console.log(newQuestion);
     li1.innerHTML = questions[0].choices[0];
     li2.innerHTML = questions[0].choices[1];
     li3.innerHTML = questions[0].choices[2];
@@ -105,9 +89,6 @@ startButton.addEventListener("click", function() {
         count = count - 15;
       }
     });
-
-
-
 
 
 

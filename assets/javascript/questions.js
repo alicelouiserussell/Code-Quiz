@@ -32,5 +32,3 @@ var questions = [
 
   ];
 
-
-$(document).ready(function() {
