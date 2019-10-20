@@ -2,6 +2,7 @@ var indexContent = document.querySelector("#content-area");
 var startButton = document.querySelector("#start-button");
 var timeElement = document.querySelector("#time");
 var count = 75;
+var questionIndex = 0;
 // QUESTIONS OBJECT //
 var questions = [
     {
