@@ -47,62 +47,65 @@ startButton.addEventListener("click", function() {
       
         if (count === 0) {
           clearInterval(countInterval);
+          endPage();
         }
       }, 1000);
 
-   // define new elements being created //
-    //QUESTION ELEMENTS//
-    var newQuestion = document.createElement("h2");
-    var newDiv = document.createElement("div");
+   newPage(questionIndex);
+   checkAnswer(questionIndex);
 
-    //LIST ELEMENTS//
+   function newPage(questionIndex) {
+    var newQuestion = document.createElement("h2");
     var ol = document.createElement("ul");
     var li1 = document.createElement("li");
     var li2 = document.createElement("li");
     var li3 = document.createElement("li");
     var li4 = document.createElement("li");
-
-    // DEFINE CONTENT //
+    
+    indexContent.innerHTML = "";
     ol.setAttribute("id", "list");
-    newQuestion.textContent = questions[0].title;
-    li1.innerHTML = questions[0].choices[0];
-    li2.innerHTML = questions[0].choices[1];
-    li3.innerHTML = questions[0].choices[2];
-    li4.innerHTML = questions[0].choices[3];
-  
-    // REPLACE existing elements, APPEND to page //
-    indexContent.parentNode.replaceChild(newDiv, indexContent);
-    newDiv.appendChild(newQuestion);
-    document.body.appendChild(ol);
+
+
+    newQuestion.textContent = questions[questionIndex].title;
+    li1.innerHTML = questions[questionIndex].choices[0];
+    li2.innerHTML = questions[questionIndex].choices[1];
+    li3.innerHTML = questions[questionIndex].choices[2];
+    li4.innerHTML = questions[questionIndex].choices[3];
+
+
+    indexContent.appendChild(newQuestion);
+    indexContent.appendChild(ol);
     ol.appendChild(li1);
     ol.appendChild(li2);
     ol.appendChild(li3);
     ol.appendChild(li4);
+};
 
-    var correctAnswer = questions[0].answer;
+function checkAnswer() {
+    var correctAnswer = questions[questionIndex].answer;
     var listElement = document.querySelector("#list"); 
     listElement.addEventListener("click", function(event){
       var userGuess = event.target.textContent;
       if (correctAnswer === userGuess){
-        alert("Correct!");
+        alert("Correct!"); 
       } else {
         alert("Incorrect!");
         count = count - 15;
-      }
-    });
+    };
 
+    questionIndex++;
 
+    if (questionIndex >= questions.length){
+        endPage();
+    } else {
+      newPage(questionIndex);
+    }
+  
+});
 
+};
 
+    
+});
 
-
-
-
-
-
-
-
-
-
-    });
 });
