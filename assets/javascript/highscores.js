@@ -2,9 +2,13 @@ function runHighscores(){
     var scoreHeader = document.querySelector("#highscoreHeader");
     var homeButton = document.querySelector("#homepage");
     var resetButton = document.querySelector("#resetScores");
-    var highScore = document.createElement("p");
+    var highscoreJSON = JSON.stringify(finalData);
+    localStorage.setItem('finalData', highscoreJSON);
 
-    highScore.textContent = userInitials + scoreDisplay;
+   var highscore = window.localStorage.getItem('finalData');
+   highscore = JSON.parse(highscore);
+   console.log(highscore);
 
-    scoreHeader.appendChild(highScore);
+   scoreHeader.appendChild(highscore);
+
 };

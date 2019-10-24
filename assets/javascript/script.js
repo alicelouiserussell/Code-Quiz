@@ -36,8 +36,7 @@ var questions = [
 
 
 $(document).ready(function() {
-
-startButton.addEventListener("click", function(event) {
+startButton.addEventListener("click", function(){
     event.preventDefault();
     setTimeout(function(){
       }, 75000);
@@ -136,6 +135,7 @@ function endPage(){
   formEl.appendChild(inputEl);
   formEl.appendChild(buttonEl);
 
+
   buttonEl.addEventListener("click", function(event){
     event.preventDefault();
     var highscoresPage = document.createElement("a");
@@ -146,6 +146,16 @@ function endPage(){
 
     var userInitials = document.querySelector("#initials").value;
     console.log(userInitials);
+
+    var finalData = [
+      {
+          name: userInitials,
+          score: scoreDisplay
+      }
+  ];
+
+    var highscoreJSON = JSON.stringify(finalData);
+    window.localStorage.setItem('finalData', highscoreJSON);
 
     runHighscores();
   });
