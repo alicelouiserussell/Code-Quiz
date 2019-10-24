@@ -3,6 +3,7 @@ var startButton = document.querySelector("#start-button");
 var timeElement = document.querySelector("#time");
 var count = 75;
 var questionIndex = 0;
+var timerInterval;
 // QUESTIONS OBJECT //
 var questions = [
     {
@@ -38,7 +39,6 @@ $(document).ready(function() {
 
 startButton.addEventListener("click", function() {
     setTimeout(function(){
-        alert("time's up!");
       }, 75000);
       
       var countInterval = setInterval(function() {
@@ -52,7 +52,7 @@ startButton.addEventListener("click", function() {
       }, 1000);
 
    newPage(questionIndex);
-   checkAnswer(questionIndex);
+});
 
    function newPage(questionIndex) {
     var newQuestion = document.createElement("h2");
@@ -64,6 +64,10 @@ startButton.addEventListener("click", function() {
     
     indexContent.innerHTML = "";
     ol.setAttribute("id", "list");
+    // li1.setAttribute("data-response", questions[questionIndex].choices[0]);
+    // li2.setAttribute("data-response", questions[questionIndex].choices[1]);
+    // li3.setAttribute("data-response", questions[questionIndex].choices[2]);
+    // li4.setAttribute("data-response", questions[questionIndex].choices[3]);
 
 
     newQuestion.textContent = questions[questionIndex].title;
@@ -79,7 +83,9 @@ startButton.addEventListener("click", function() {
     ol.appendChild(li2);
     ol.appendChild(li3);
     ol.appendChild(li4);
-};
+
+    checkAnswer();
+  };
 
 function checkAnswer() {
     var correctAnswer = questions[questionIndex].answer;
@@ -88,24 +94,41 @@ function checkAnswer() {
       var userGuess = event.target.textContent;
       if (correctAnswer === userGuess){
         alert("Correct!"); 
+        questionIndex++;
+        if (questionIndex >= questions.length){
+          endPage();
+        } else {
+        newPage(questionIndex);
+        }
       } else {
         alert("Incorrect!");
         count = count - 15;
     };
 
-    questionIndex++;
-
-    if (questionIndex >= questions.length){
-        endPage();
-    } else {
-      newPage(questionIndex);
-    }
-  
-});
-
-};
+  });
 
     
+};
+
+
+function endPage(){
+  if (timerInterval) {
+    clearInterval(timerInterval)
+  };
+  var allDoneHeader = document.createElement("h2");
+  var scoreDisplay = document.createElement("p");
+
+  allDoneHeader.textContent = "All done!";
+  indexContent.textContent = ""; 
+
+  timeElement.textContent = count;
+  scoreDisplay.textContent = "Your final score is " + timeElement.textContent;
+
+  indexContent.appendChild(allDoneHeader);
+  indexContent.appendChild(scoreDisplay);
+};
 });
 
-});
+    
+
+
