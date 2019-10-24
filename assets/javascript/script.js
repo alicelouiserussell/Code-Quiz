@@ -64,12 +64,7 @@ startButton.addEventListener("click", function() {
     
     indexContent.innerHTML = "";
     ol.setAttribute("id", "list");
-    // li1.setAttribute("data-response", questions[questionIndex].choices[0]);
-    // li2.setAttribute("data-response", questions[questionIndex].choices[1]);
-    // li3.setAttribute("data-response", questions[questionIndex].choices[2]);
-    // li4.setAttribute("data-response", questions[questionIndex].choices[3]);
-
-
+    
     newQuestion.textContent = questions[questionIndex].title;
     li1.innerHTML = questions[questionIndex].choices[0];
     li2.innerHTML = questions[questionIndex].choices[1];
@@ -117,15 +112,37 @@ function endPage(){
   };
   var allDoneHeader = document.createElement("h2");
   var scoreDisplay = document.createElement("p");
+  var formEl = document.createElement("form");
+  var labelEl = document.createElement("label");
+  var inputEl = document.createElement("input");
+  var buttonEl = document.createElement("button");
 
   allDoneHeader.textContent = "All done!";
   indexContent.textContent = ""; 
-
   timeElement.textContent = count;
   scoreDisplay.textContent = "Your final score is " + timeElement.textContent;
+  labelEl.setAttribute("for", "initials");
+  labelEl.textContent = "Enter initials";
+  inputEl.setAttribute("type", "text");
+  inputEl.setAttribute("id", "initials");
+  buttonEl.textContent = "Submit";
+  
 
   indexContent.appendChild(allDoneHeader);
   indexContent.appendChild(scoreDisplay);
+  indexContent.appendChild(formEl);
+  formEl.appendChild(labelEl);
+  formEl.appendChild(inputEl);
+  formEl.appendChild(buttonEl);
+
+  buttonEl.addEventListener("click", function(event){
+    event.preventDefault();
+    var highscoresPage = document.createElement("a");
+
+    highscoresPage.href = "highscores.html";
+    highscoresPage.textContent = "View high scores!"
+    indexContent.appendChild(highscoresPage);
+  });
 };
 });
 
