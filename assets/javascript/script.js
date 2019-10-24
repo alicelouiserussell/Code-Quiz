@@ -37,7 +37,8 @@ var questions = [
 
 $(document).ready(function() {
 
-startButton.addEventListener("click", function() {
+startButton.addEventListener("click", function(event) {
+    event.preventDefault();
     setTimeout(function(){
       }, 75000);
       
@@ -64,7 +65,7 @@ startButton.addEventListener("click", function() {
     
     indexContent.innerHTML = "";
     ol.setAttribute("id", "list");
-    
+
     newQuestion.textContent = questions[questionIndex].title;
     li1.innerHTML = questions[questionIndex].choices[0];
     li2.innerHTML = questions[questionIndex].choices[1];
@@ -142,9 +143,16 @@ function endPage(){
     highscoresPage.href = "highscores.html";
     highscoresPage.textContent = "View high scores!"
     indexContent.appendChild(highscoresPage);
+
+    var userInitials = document.querySelector("#initials").value;
+    console.log(userInitials);
+
+    runHighscores();
   });
-};
+
+  };
 });
+
 
     
 
